@@ -109,7 +109,7 @@
                     <!-- End .toolbox-left -->
 
                     <div class="toolbox-item toolbox-sort ml-lg-auto">
-                       
+
                         <!-- Assuming this code is in your HTML file (e.g., index.php) -->
 
                         <form action="index.php?action=gridproduct&act=orderby" method="post" id="sortingForm">
@@ -140,7 +140,7 @@
                     </div>
                     <!-- End .toolbox-item -->
 
-                  
+
                     <!-- End .toolbox-item -->
                     <?php
                     if (!isset($_GET['action']) || $_GET['action'] !== 'product_danhmuc') {
@@ -155,7 +155,7 @@
                         </div>
                     <?php
 
-                       
+
                     }
                     ?>
 
@@ -180,13 +180,10 @@
                             <?php
                             if (isset($_GET['action']) && $_GET['action'] == 'product_danhmuc' && isset($_GET['id_menu']) && !empty($_GET['id_menu'])) {
                                 $result = $allsp->getProductMenu($_GET['id_menu'], $start, $limit);
-                               
                             } elseif (isset($_GET['id_danhmuc']) && $_GET['id_danhmuc'] == 3) {
                                 $result = $allsp->getProductSale($start, $limit);
-                               
                             } elseif (isset($_GET['id_menu'])) {
                                 $result = $allsp->getProductMenu($_GET['id_menu'], $start, $limit);
-                               
                             } elseif (isset($_GET['act']) && $_GET['act'] == 'timkiem') {
                                 if ($_POST['search']) {
                                     $tk = $_POST['search'];
@@ -198,8 +195,8 @@
                                 if ($_POST['orderby']) {
                                     $tk = $_POST['orderby'];
                                     $result = $allsp->orderby($tk);
-                                   $count=0;
-                                  
+                                    $count = 0;
+
                                     // var_dump($count);
                                 }
                             } else {
@@ -249,11 +246,18 @@
                                                 <span class="product-price"><?= $set['product_price_new'] ?></span>
                                             </div>
 
-                                            <div class="product-action">
-                                                <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i class="icon-heart"></i></a>
-                                                <a href="index.php?action=detailproduct&id_detail=<?= $set['product_id'] ?>&id_menu=<?= $set['id_menu'] ?>" class="btn-icon btn-add-cart"><i class="fa fa-arrow-right"></i><span>Xem chi tiết</span></a>
-                                                <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                                            </div>
+                                            <form id="wishlistForm" action="index.php?action=wishlist&act=wishlist_action" method="post">
+                                                <div class="product-action">
+                                                    <input type="hidden" name="id" value="<?php echo $set['product_id'] ?>">
+                                                    <input type="hidden" name="img" value="<?php echo $set['product_img'] ?>">
+                                                    <input type="hidden" name="name" value="<?php echo $set['product_name'] ?>">
+                                                    <input type="hidden" name="price" value="<?php echo $set['product_price_new'] ?>">
+
+                                                    <a href="" style="background-color: white;" class="btn-icon-wish" title="wishlist"><input style="background-color: white;border:0px solid;margin-top: 17px;" type="submit" value="❤️" name="like" class="heart-button" placeholder="❤️"></input></a>
+                                                    <input type="hidden" name="id_menu" value="<?= $set['id_menu'] ?>">
+                                                    <a href="index.php?action=detailproduct&id_detail=<?= $set['product_id']; ?>&id_menu=<?= $set['id_menu'] ?>" class="btn-icon btn-add-cart product-type-simple"><i class="icon-shopping-cart"></i><span>Xem chi tiết </span></a>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -363,13 +367,13 @@
                             </div>
                             <!-- End .widget -->
 
-                          
+
                             <!-- End .widget -->
 
-                           
+
                             <!-- End .widget -->
 
-                           
+
                             <!-- End .widget -->
 
                             <div class="widget widget-featured">

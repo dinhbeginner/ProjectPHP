@@ -112,18 +112,29 @@
                                 </a>
 
                                 <div class="toolbox-item toolbox-sort">
-                                    <label>Sort By:</label>
 
-                                    <div class="select-custom">
-                                        <select name="orderby" class="form-control">
-                                            <option value="menu_order" selected="selected">Default sorting</option>
-                                            <option value="popularity">Sort by popularity</option>
-                                            <option value="rating">Sort by average rating</option>
-                                            <option value="date">Sort by newness</option>
-                                            <option value="price">Sort by price: low to high</option>
-                                            <option value="price-desc">Sort by price: high to low</option>
-                                        </select>
-                                    </div>
+                                    <form action="index.php?action=listproduct&act=orderby" method="post" id="sortingForm">
+                                        <div class="select-custom">
+                                            <label for="orderby">Sort by:</label>
+                                            <select name="orderby" id="orderby" class="form-control">
+                                                <option value="menu_order" selected="selected">Default sorting</option>
+                                                <option value="ID_DESC">Các Sản Phẩm Mới Nhất</option>
+                                                <option value="ASC">Xắp xếp theo giá từ thấp lên cao</option>
+                                                <option value="DESC">Xắp xếp theo giá từ cao xuống thấp</option>
+                                            </select>
+                                        </div>
+                                        <!-- Remove the button from here -->
+                                    </form>
+
+                                    <!-- Add this script at the end of your HTML, before the closing </body> tag -->
+                                    <script>
+                                        // Using jQuery to detect changes in the select and submit the form
+                                        $(document).ready(function() {
+                                            $('#orderby').change(function() {
+                                                $('#sortingForm').submit();
+                                            });
+                                        });
+                                    </script>
                                     <!-- End .select-custom -->
 
 
@@ -178,6 +189,14 @@
                                 $result = $allsp->getProductMenu($_GET['id_menu'], $start, $limit);
                             } elseif (isset($_GET['id_menu'])) {
                                 $result = $allsp->getProductMenu($_GET['id_menu'], $start, $limit);
+                            } elseif (isset($_GET['act']) && $_GET['act'] == 'orderby') {
+                                if ($_POST['orderby']) {
+                                    $tk = $_POST['orderby'];
+                                    $result = $allsp->orderby($tk);
+                                    $count = 0;
+
+                                    // var_dump($count);
+                                }
                             } else {
                                 $result = $allsp->getAllProductTrang1($start, $limit);
                             }
@@ -215,8 +234,7 @@
                                             <!-- End .product-ratings -->
                                         </div>
                                         <!-- End .product-container -->
-                                        <p class="product-description">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                            Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                        <p class="product-description"></p>
                                         <div class="price-box">
                                             <span class="old-price"><?php echo $set['product_price'] ?></span>
                                             <span class="product-price"><?php echo $set['product_price_new'] ?></span>
@@ -251,11 +269,11 @@
                                                     <input type="hidden" name="name" value="<?php echo $set['product_name'] ?>">
                                                     <input type="hidden" name="price" value="<?php echo $set['product_price_new'] ?>">
 
-                                                    <input type="submit" name="like" style="height:40px"value="Thêm vào wishlist" class="wishlist-button">
-                                                        <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
-                                                            <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
-                                                        </svg>
-                                                        <span></span>
+                                                    <input type="submit" name="like" style="height:40px" value="Thêm vào wishlist" class="wishlist-button">
+                                                    <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                                                        <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+                                                    </svg>
+                                                    <span></span>
                                                     </input>
                                                 </form>
                                             </div>
@@ -363,7 +381,7 @@
                             </div>
                             <!-- End .widget -->
 
-                            <div class="widget">
+                            <!-- <div class="widget">
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">Price</a>
                                 </h3>
@@ -373,29 +391,29 @@
                                         <form action="#">
                                             <div class="price-slider-wrapper">
                                                 <div id="price-slider"></div>
-                                                <!-- End #price-slider -->
+                                                
                                             </div>
-                                            <!-- End .price-slider-wrapper -->
+                                         
 
                                             <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                                                 <div class="filter-price-text">
                                                     Price:
                                                     <span id="filter-price-range"></span>
                                                 </div>
-                                                <!-- End .filter-price-text -->
+                                                
 
                                                 <button type="submit" class="btn btn-primary">Filter</button>
                                             </div>
-                                            <!-- End .filter-price-action -->
+                                          
                                         </form>
                                     </div>
-                                    <!-- End .widget-body -->
+                               
                                 </div>
-                                <!-- End .collapse -->
-                            </div>
-                            <!-- End .widget -->
+                              
+                            </div> -->
 
-                            <div class="widget widget-color">
+
+                            <!-- <div class="widget widget-color">
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true" aria-controls="widget-body-4">Color</a>
                                 </h3>
@@ -420,13 +438,13 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- End .widget-body -->
+                                  
                                 </div>
-                                <!-- End .collapse -->
-                            </div>
+                              
+                            </div> -->
                             <!-- End .widget -->
 
-                            <div class="widget widget-size">
+                            <!-- <div class="widget widget-size">
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-body-5" role="button" aria-expanded="true" aria-controls="widget-body-5">Sizes</a>
                                 </h3>
@@ -448,10 +466,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- End .widget-body -->
+                                 
                                 </div>
-                                <!-- End .collapse -->
-                            </div>
+                              
+                            </div> -->
                             <!-- End .widget -->
 
                             <div class="widget widget-featured">

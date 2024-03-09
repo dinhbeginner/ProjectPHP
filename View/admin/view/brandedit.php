@@ -38,7 +38,7 @@
                             // var_dump($_FILES);
 
 
-                            $uploadDir = 'assets/upload/menu/';
+                            $uploadDir = '../../assets/images/demoes/products/';
                             $uploadedFile = $uploadDir . basename($_FILES['brand_image']['name']);
                             $fileImage = basename($_FILES['brand_image']['name']);
                             // Check if the uploaded file is an image
@@ -95,7 +95,7 @@
                     <div class="admin-content-right">
 
                         <div class="admin-content-right-category-edit">
-                            <h1>Edit Category</h1>
+                            <h1>Edit Brand</h1>
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <select name="category_id" id="">
                                     <option value="#">--Chọn Danh Mục</option>
@@ -116,7 +116,7 @@
                                     <div class="form-group">
                                         <input required name="brand_name" type="text" class="form-control" style="margin-left:100px;width:500px;height:60px" id="category_name" placeholder="Enter brand name" value="<?php echo htmlspecialchars($result['ten_menu']) ?>">
                                     </div>
-                                    <input type="file" name="brand_image" accept="image/*">
+                                    <input type="file" name="brand_image" accept="image/*" required>
                                     <button type="submit" class="btn btn-primary w-10 " style="height:60px">Save Changes</button>
                                 </div>
                             </form>

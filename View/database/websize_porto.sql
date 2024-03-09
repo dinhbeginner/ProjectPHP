@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 24, 2024 lúc 05:43 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Thời gian đã tạo: Th3 09, 2024 lúc 05:24 AM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `websize_porto`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `adminId` int(11) NOT NULL,
+  `adminName` varchar(255) NOT NULL,
+  `adminEmail` varchar(255) NOT NULL,
+  `adminUser` varchar(50) NOT NULL,
+  `adminPass` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`adminId`, `adminName`, `adminEmail`, `adminUser`, `adminPass`) VALUES
+(1, 'hoangdinh', 'hoangdinh', 'hoangdinh', 123);
 
 -- --------------------------------------------------------
 
@@ -42,7 +63,11 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id_comment`, `id_khachhang`, `id_product`, `discriber`, `star`, `date`) VALUES
 (24, 7, 3, '', 2, '2024-01-24'),
-(25, 7, 3, 'tuyệt vời', 5, '2024-01-24');
+(25, 7, 3, 'tuyệt vời', 5, '2024-01-24'),
+(26, 11, 1, 'great', 5, '2024-02-26'),
+(27, 14, 3, '', 5, '2024-03-05'),
+(28, 14, 2, 'great', 5, '2024-03-05'),
+(29, 13, 6, 'great', 5, '2024-03-05');
 
 -- --------------------------------------------------------
 
@@ -66,15 +91,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `id_customer`, `fullname`, `address`, `phone`, `email`, `total`, `order_date`) VALUES
-(19, 7, 'dinh nguyen', 'quân 11', '0396516454', 'nguyenvanben2004@gmail.com', '9,928,000', '2024-01-16 17:00:00'),
-(20, 7, 'dinh nguyen', 'quân 11', '0396516454', 'tofok63463@vip4e.com', '189,000', '2024-01-16 17:00:00'),
-(21, 7, 'dinh nguyen', 'quân 11', '0396516454', 'vendor@gmail.com', '55,000', '2024-01-16 17:00:00'),
-(22, 7, 'dinh nguyen', 'quân 11', '0396516454', 'nguyenvanben2004@gmail.com', '48,640,000', '2024-01-16 17:00:00'),
-(23, 7, 'dinh nguyen', 'quân 11', '0396516454', 'dinh@gmail.com', '1,102,008,000', '2024-01-16 17:00:00'),
-(24, 7, 'dinh nguyen', 'quân 11', '0396516454', 'trungkien44888888@gmail.com', '55,000', '2024-01-16 17:00:00'),
-(25, 7, 'dinh nguyen', 'quân 11', '0396516454', 'admin@gmail.com', '289,000', '2024-01-16 17:00:00'),
-(26, 7, 'dinh nguyen', 'quân 11', '0396516454', 'nguyenvanben2004@gmail.com', '496,400,000,000', '2024-01-18 17:00:00'),
-(27, 7, 'dinh nguyen', 'quân 11', '0396516454', 'nguyenvanben2004@gmail.com', '1,993,000', '2024-01-23 17:00:00');
+(44, 12, 'an', 'an', '434343434', 'an@gmail.com', '3,456,000', '2024-03-08 04:57:53'),
+(48, 13, 'dinh nguyen', 'quân 11', '0396516454', 'nguyenvanben2004@gmail.com', '3,285,000', '2023-03-14 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -89,24 +107,23 @@ CREATE TABLE `order_details` (
   `product_name` varchar(255) NOT NULL,
   `product_size` varchar(50) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
-  `product_price` varchar(20) NOT NULL
+  `product_price` varchar(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_details`
 --
 
-INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `product_name`, `product_size`, `quantity`, `product_price`) VALUES
-(20, 19, 6, 'Dây chuyền DCPTB 362', '', 2, '4.964.000'),
-(21, 20, 7, 'Giầy nam màu đen', '41', 1, '189.000'),
-(22, 21, 3, 'Loa 3D Ultimate dạng tròn', '', 1, '55.000'),
-(23, 22, 16, 'Dây chuyền DCPTB 365', '', 10, '4.864.000'),
-(24, 23, 6, 'Dây chuyền DCPTB 362', '', 222, '4.964.000'),
-(25, 24, 3, 'Loa 3D Ultimate dạng tròn', '', 1, '55.000'),
-(26, 25, 17, 'Đồng hồ thông minh', '', 1, '289.000'),
-(27, 26, 6, 'Dây chuyền DCPTB 362', '', 100000, '4.964.000'),
-(28, 27, 11, 'Túi du lịch thể thao nam', '', 1, '265.000'),
-(29, 27, 16, 'Dây chuyền DCPTB 365', '', 2, '864.000');
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `product_name`, `product_size`, `quantity`, `product_price`, `status`, `date`) VALUES
+(66, 48, 2, 'Túi xách nữ màu nâu thông thường', '', 1, '249.000', 0, '2024-03-08 03:53:50'),
+(67, 48, 14, 'Dây chuyền DCPTB 363', '', 1000, '964.000', 1, '2023-03-16 03:58:56'),
+(68, 48, 5, 'Casual Spring Blue Shoes', '43', 100, '235.000', 0, '2024-03-08 03:59:44'),
+(69, 48, 11, 'Túi du lịch thể thao nam', '', 500, '265.000', 1, '2024-03-08 03:59:59'),
+(70, 48, 13, 'Túi xách nữ chất liệu cao cấp', '', 100, '329.000', 0, '2024-03-08 03:53:45'),
+(71, 48, 15, 'Dây chuyền DCPTB 364', '', 1, '954.000', 1, '2024-03-08 04:00:04'),
+(72, 48, 17, 'Đồng hồ thông minh', '', 200, '289.000', 0, '2024-03-08 03:46:03');
 
 -- --------------------------------------------------------
 
@@ -165,8 +182,33 @@ CREATE TABLE `tbl_infor_product` (
   `id_product` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `describe` text NOT NULL
+  `describe` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_infor_product`
+--
+
+INSERT INTO `tbl_infor_product` (`id`, `id_product`, `quantity`, `status`, `describe`, `date`) VALUES
+(1, 1, 0, 1, 'Loa Bluetooth chất lượng tốt', '2024-03-07 02:48:40'),
+(2, 2, 9, 1, 'Túi xách nữ màu nâu cổ điển', '2024-03-07 02:48:40'),
+(3, 3, 13, 1, 'Loa 3D chất lượng cao dạng tròn', '2024-03-07 02:48:40'),
+(4, 4, 0, 1, 'Ba lô xanh cho giới trẻ - Kích thước S', '2024-03-07 02:48:40'),
+(5, 5, 27, 1, 'Giày thể thao mùa xuân thoải mái', '2023-03-16 02:48:40'),
+(6, 6, 3, 1, 'Dây chuyền thời trang', '2024-03-07 02:48:40'),
+(7, 7, 19, 1, 'Giày nam màu đen', '2023-02-23 02:48:40'),
+(8, 8, 8, 1, 'Kính mát nam màu nâu-đen', '2023-03-17 02:48:40'),
+(9, 9, 14, 1, 'Kính râm nam màu đen', '2023-02-23 02:48:40'),
+(10, 10, 0, 1, 'Giày thể thao bóng rổ màu xanh lá cây', '2023-02-23 02:48:40'),
+(11, 11, 2000, 1, 'Túi du lịch thể thao nam', '2024-03-08 04:07:48'),
+(12, 12, 10, 1, 'Túi xách nữ màu nâu', '2023-02-09 02:48:40'),
+(13, 13, 13, 1, 'Túi xách nữ chất lượng cao', '2024-03-07 02:48:40'),
+(14, 14, 4, 1, 'Dây chuyền thời trang', '2024-03-07 02:48:40'),
+(15, 15, 4, 1, 'Dây chuyền thời trang', '2024-03-07 02:48:40'),
+(16, 16, 10, 1, 'Dây chuyền thời trang', '2023-02-15 02:48:40'),
+(17, 17, 14, 1, 'Đồng hồ thông minh', '2024-03-07 02:48:40'),
+(18, 18, 17, 1, 'Dây chuyền thời trang', '2023-02-11 02:48:40');
 
 -- --------------------------------------------------------
 
@@ -189,9 +231,10 @@ CREATE TABLE `tbl_khachhang` (
 --
 
 INSERT INTO `tbl_khachhang` (`id_customer`, `customer`, `username`, `password`, `email`, `address`, `phone`) VALUES
-(7, 'dinh nguyen', 'Nguyenhoangdinh', '24f929c6ee111af13378f71e231099f6', 'nguyenvanben@gmail.com', '70 cu xa lu da', 12345789),
-(9, 'Bền', 'DinhAn', 'b7dd4dfcc3267ffb54fc4b4c2bc06da5', 'nguyenvanben2004@gmail.com', 'trà vinh', 396516454),
-(10, 'r', 'r', '3104a1f15ea653b717071992c3a4181a', 'login@example.com', 'r', 1234567899);
+(12, 'an', 'an', '1bbd886460827015e5d605ed44252251', 'dinh@gmail.com', 'abcss', 434334344),
+(13, 'dinh nguyen', 'Nguyenhoangdinh', 'f5b0bbed1b2bb522239ca00a381aa865', 'nguyenvanben2004@gmail.com', '70 cu xa lu da', 396516454),
+(14, 'test', 'test', '4b4057b31293398ba58fac74e870eee3', 'test@gmail.com', 'test', 202020202),
+(15, 'abs', 'abs', '4b4057b31293398ba58fac74e870eee3', 'test@gmail.com', 'abs', 202020202);
 
 -- --------------------------------------------------------
 
@@ -324,6 +367,12 @@ INSERT INTO `tbl_size` (`id_size`, `id_sizegiay`, `size_giay`, `id_sizeao`, `siz
 --
 
 --
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminId`);
+
+--
 -- Chỉ mục cho bảng `comment`
 --
 ALTER TABLE `comment`
@@ -394,46 +443,52 @@ ALTER TABLE `tbl_size`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_danhmuc`
 --
 ALTER TABLE `tbl_danhmuc`
-  MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_infor_product`
 --
 ALTER TABLE `tbl_infor_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_khachhang`
 --
 ALTER TABLE `tbl_khachhang`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_news`
@@ -445,7 +500,7 @@ ALTER TABLE `tbl_news`
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_size`

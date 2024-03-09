@@ -50,6 +50,8 @@ switch ($act) {
                 
             }
             echo '<script>alert("Bạn đã đặt hàng thành công")</script>';
+            
+    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=dashboard"/>';
         }
         
         include_once "View/product.php";

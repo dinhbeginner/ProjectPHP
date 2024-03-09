@@ -91,11 +91,11 @@ class product
     {
         try {
             // Validate and sanitize input data...
-    
+
             // Check if a file was uploaded...
             if (!empty($files['product_img']['name']) && !empty($files['product_img2']['name'])) {
                 // Move uploaded files...
-    
+
                 // Insert product information into the database
                 $product_name = $_POST['product_name'];
                 $id_menu = $_POST['id_menu'];
@@ -104,23 +104,23 @@ class product
                 $quantity = $_POST['quantity'];
                 $describe = $_POST['product_desc'];
                 $status = $_POST['status'];
-    
+
                 $product_img = $_FILES['product_img']['name'];
                 $product_img2 = $_FILES['product_img2']['name'];
-    
+
                 $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
                 $file_extension_img = strtolower(pathinfo($product_img, PATHINFO_EXTENSION));
                 $file_extension_img2 = strtolower(pathinfo($product_img2, PATHINFO_EXTENSION));
-    
+
                 if (in_array($file_extension_img, $allowed_extensions) && in_array($file_extension_img2, $allowed_extensions)) {
                     // Move the uploaded files to the "uploads" directory
-                    $uploadPath = "assets/upload/products/";
+                    $uploadPath = "../../assets/images/products/";
                     move_uploaded_file($_FILES['product_img']['tmp_name'], $uploadPath . $product_img);
                     move_uploaded_file($_FILES['product_img2']['tmp_name'], $uploadPath . $product_img2);
-    
+
                     // Initialize Database class
                     $database = new Database();
-    
+
                     // Insert into tbl_product
                     $queryProduct = "INSERT INTO tbl_product (
                         product_id,
@@ -132,14 +132,14 @@ class product
                         product_img,
                         product_img2
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    
+
                     $valuesProduct = [null, $product_name, 2, $id_menu, $product_price, $product_price_new, $product_img, $product_img2];
-    
+
                     $resultProduct = $database->insert($queryProduct, $valuesProduct);
-    
+
                     if ($resultProduct) {
                         $product_id = $database->lastInsertId();
-    
+
                         // Insert into tbl_infor_product
                         $queryInforProduct = "INSERT INTO tbl_infor_product (
                             id,
@@ -148,11 +148,11 @@ class product
                             status, 
                             `describe`
                         ) VALUES (null, ?, ?, ?, ?)";
-                        
+
                         $valuesInforProduct = [$product_id, $quantity, $status, $describe];
-                        
+
                         $resultInforProduct = $database->insert($queryInforProduct, $valuesInforProduct);
-                        
+
                         if ($resultInforProduct) {
                             return true; // Both insertions were successful
                         } else {
@@ -160,7 +160,7 @@ class product
                         }
                     } else {
                         return "tbl_product"; // Error inserting into tbl_product
-                    }
+                    }   
                 } else {
                     // Invalid file type
                     return "Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.";
@@ -175,97 +175,128 @@ class product
             return "Error: " . $e->getMessage();
         }
     }
-    
-
-    // Function to update a product
     public function update_product($data, $product_id, $files)
     {
-        $product_name = $data['product_name'];
-        $cartegory_id = $data['cartegory_id'];
-        $brand_id = $data['brand_id'];
-        $product_price = $data['product_price'];
-        $product_price_new = $data['product_price_new'];
-        $product_desc = $data['product_desc'];
+        try {
+            // Extract product information from $data
+            $product_name = $data['product_name'];
+            $id_menu = $data['id_menu'][0];
+            $product_price = $data['product_price'];
+            $product_price_new = $data['product_price_new'];
+            $quantity = $data['quantity'];
+            $describe = $data['product_desc'];
+            $status = $data['status'];
 
-        // Check if a file was uploaded
-        if (!empty($files['product_img']['name'])) {
-            $product_img = $files['product_img']['name'];
+            // Check if a file was uploaded
+            if (!empty($files['product_img']['name'])) {
+                $product_img = $_FILES['product_img']['name'];
+                $product_img2 = $_FILES['product_img2']['name'];
 
-            // Check if the uploaded file is an image
-            $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
-            $file_extension = strtolower(pathinfo($product_img, PATHINFO_EXTENSION));
+                $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+                $file_extension_img = strtolower(pathinfo($product_img, PATHINFO_EXTENSION));
+                $file_extension_img2 = strtolower(pathinfo($product_img2, PATHINFO_EXTENSION));
 
-            if (in_array($file_extension, $allowed_extensions)) {
-                // Move the uploaded file to the "uploads" directory
-                move_uploaded_file($files['product_img']['tmp_name'], "uploads/" . $product_img);
+                if (in_array($file_extension_img, $allowed_extensions) && in_array($file_extension_img2, $allowed_extensions)) {
+                    // Move the uploaded file to the "uploads" directory
+                    $uploadPath = "../../assets/images/products/";
+                    move_uploaded_file($_FILES['product_img']['tmp_name'], $uploadPath . $product_img);
+                    move_uploaded_file($_FILES['product_img2']['tmp_name'], $uploadPath . $product_img2);
+                } else {
+                    // Invalid file type
+                    echo "<script>alert('Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.');</script>";
+                    return false;
+                }
+            }
+
+            // Initialize Database class
+            $database = new Database();
+
+            // Update product information in the database
+            $query = "UPDATE tbl_product SET
+                        product_name = ?,
+                        id_menu = ?,
+                        product_price = ?,
+                        product_price_new = ?,
+                        product_img = ?,
+                        product_img2 = ?
+                        WHERE product_id = ?";
+
+            $values = [$product_name, $id_menu, $product_price, $product_price_new, $product_img, $product_img2, $product_id];
+
+            $result = $database->update($query, $values);
+
+            // Check if the update was successful
+            if ($result) {
+                // Update additional product information
+                $queryInforProduct = "UPDATE tbl_infor_product SET
+                                        quantity = ?,
+                                        status = ?,
+                                        `describe` = ?
+                                        WHERE id_product = ?";
+
+                $valuesInforProduct = [$quantity, $status, $describe, $product_id];
+
+                $resultInforProduct = $database->update($queryInforProduct, $valuesInforProduct);
+
+                // Handle product images description update
+                // You need to implement the logic for updating product images descriptions here if needed.
+
+                return true; // Return true if the update was successful
             } else {
-                // Invalid file type
-                echo "<script>alert('Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.');</script>";
-                return false;
+                return false; // Return false if the update failed
             }
+        } catch (Exception $e) {
+            // Log or display the actual error message
+            error_log("Error: " . $e->getMessage(), 0);
+            return "Error: " . $e->getMessage();
         }
-
-        // Delete existing images for the product
-
-        // Check if the product_img_desc array is set
-        if (isset($files['product_img_desc'])) {
-            $deleteQuery = "DELETE FROM tbl_product_img_desc WHERE product_id='$product_id'";
-            $this->db->delete($deleteQuery);
-
-            foreach ($files['product_img_desc']['name'] as $key => $value) {
-                $filename = $files['product_img_desc']['name'][$key];
-                $tmp_name = $files['product_img_desc']['tmp_name'][$key];
-
-                // Move each uploaded file to the "uploads" directory
-                move_uploaded_file($tmp_name, "uploads/" . $filename);
-
-                // Insert the image description into the database
-                $query = "INSERT INTO tbl_product_img_desc (product_id, product_img_desc) VALUES ('$product_id', '$filename')";
-                $result = $this->db->insert($query);
-            }
-        }
-
-        // Update product information in the database
-        $query = "UPDATE tbl_product SET
-                    product_name = '$product_name',
-                    cartegory_id = '$cartegory_id',
-                    brand_id = '$brand_id',
-                    product_price = '$product_price',
-                    product_price_new = '$product_price_new',
-                    product_desc = '$product_desc',
-                    product_img = '$product_img'
-                  WHERE product_id = '$product_id'";
-
-        $result = $this->db->update($query);
-
-        return $result;
-        header('location:productlist.php');
     }
 
-    // Function to get product details by ID
+
+
+
+
+
+
+
     public function get_product($product_id)
     {
-        $query = "SELECT * FROM tbl_product where product_id ='$product_id'";
+        $query = "SELECT* FROM tbl_product where product_id ='$product_id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function get_infor($product_id)
+    {
+        $query = "SELECT* FROM tbl_infor_product where id_product ='$product_id'";
         $result = $this->db->select($query);
         return $result;
     }
 
-    // Function to update brand
-    public function update_brand($cartegory_id, $brand_name, $brand_id)
-    {
-        $query = "UPDATE tbl_brand SET brand_name='$brand_name',cartegory_id ='$cartegory_id' WHERE brand_id='$brand_id'";
-        $result = $this->db->update($query);
-        header('location:brandlist.php');
-        return $result;
-    }
 
-    // Function to delete brand
-    public function delete_brand($brand_id)
+    public function delete_product($id_product)
     {
-        $query = "DELETE FROM tbl_brand  WHERE brand_id='$brand_id'";
-        $result = $this->db->delete($query);
-        header('location:brandlist.php');
-        return $result;
+        try {
+            // Delete records from tbl_product
+            $queryProduct = "DELETE FROM tbl_product WHERE product_id=:product_id";
+            $valuesProduct = array(':product_id' => $id_product);
+            $resultProduct = $this->db->delete($queryProduct, $valuesProduct);
+
+            // Delete records from tbl_infor_product
+            $queryInforProduct = "DELETE FROM tbl_infor_product WHERE id_product=:id_product";
+            $valuesInforProduct = array(':id_product' => $id_product);
+            $resultInforProduct = $this->db->delete($queryInforProduct, $valuesInforProduct);
+
+            // Check if both deletion operations were successful
+            if ($resultProduct && $resultInforProduct) {
+                return true; // Both deletions were successful
+            } else {
+                return false; // At least one deletion failed
+            }
+        } catch (PDOException $e) {
+            // Handle the exception (log it, show an error message, etc.)
+            error_log("Error deleting product: " . $e->getMessage()); // Log the error
+            return false; // Return false to indicate deletion failed
+        }
     }
 }
 ?>

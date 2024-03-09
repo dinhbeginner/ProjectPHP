@@ -7447,8 +7447,7 @@ figure .porto-loading-icon {
     display: inline-block;
     position: absolute;
     top: 0;
-    margin: -19px -7px 15px; 
-    /* margin:0 2px; */
+    margin: -19px -7px 15px;
     width: 52px;
     height: 57px;
     font-size: 1.6rem;
@@ -7623,7 +7622,7 @@ figure .porto-loading-icon {
 
 .ratings-container .product-ratings:before {
     content: "";
-    color: #e4ac1e
+    color:#e4ac1e
 }
 
 .ratings-container .product-ratings:hover .tooltiptext {
@@ -8510,11 +8509,11 @@ figure .porto-loading-icon {
 }
 
 .product-overlay .product-details .ratings-container .product-ratings:before {
-    color: rgba(255, 255, 255, 0.6)
+    color: rgba(250, 28, 28, 0.6)
 }
 
 .product-overlay .product-details .ratings-container .ratings:before {
-    color: #fff
+    color: #ea1212
 }
 
 .product-overlay .product-details .price-box {
@@ -18302,8 +18301,7 @@ aside .widget-info i {
 
 @media (min-width:992px) {
     .main-content-wrap {
-        overflow: hidden;
-        height:1000px;
+        overflow: hidden
     }
 
     .main-content-wrap .main-content {

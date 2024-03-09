@@ -18,8 +18,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets\img\logo-fav.png">
-    <title>Beagle</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/images/icons/favicon.png">
+    <title>PORTO - ADMIN</title>
     <link rel="stylesheet" type="text/css" href="assets\lib\perfect-scrollbar\css\perfect-scrollbar.css">
     <link rel="stylesheet" type="text/css" href="assets\lib\material-design-icons\css\material-design-iconic-font.min.css">
     <link rel="stylesheet" type="text/css" href="assets\lib\jquery.vectormap\jquery-jvectormap-1.2.2.css">
@@ -78,6 +78,15 @@ session_start();
                 case 'productedit':
                     include_once "controller/productedit.php";
                     break;
+                case 'listkhachhang':
+                    include_once "controller/khachhang.php";
+                    break;
+                case 'donhang':
+                    include_once "controller/donhang.php";
+                    break;
+                    case 'loai':
+                        include_once "controller/loai.php";
+                        break;
             }
 
             ?>

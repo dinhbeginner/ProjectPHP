@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from portotheme.com/html/porto_ecommerce/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2023 14:13:44 GMT -->
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,14 +21,17 @@
 
 	<script>
 		WebFontConfig = {
-			google: { families: [ 'Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700', 'Shadows+Into+Light:400' ] }
+			google: {
+				families: ['Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700', 'Shadows+Into+Light:400']
+			}
 		};
-		( function ( d ) {
-			var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
+		(function(d) {
+			var wf = d.createElement('script'),
+				s = d.scripts[0];
 			wf.src = 'assets/js/webfont.js';
 			wf.async = true;
-			s.parentNode.insertBefore( wf, s );
-		} )( document );
+			s.parentNode.insertBefore(wf, s);
+		})(document);
 	</script>
 
 	<!-- Plugins CSS File -->
@@ -41,7 +45,7 @@
 
 <body>
 	<div class="page-wrapper">
-	
+
 		<main class="main">
 			<nav aria-label="breadcrumb" class="breadcrumb-nav">
 				<div class="container">
@@ -56,7 +60,7 @@
 				</div>
 			</nav>
 
-			<div id="map"></div>
+			<div id=""><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4985626515218!2d106.65205687480487!3d10.773075089375533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec0f16d67a5%3A0x577e4b714b74db4b!2zNzAgxJAuIFPhu5EgMyBDxrAgWMOhIEzhu68gR2lhLCBQaMaw4budbmcgMTUsIFF14bqtbiAxMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1707320219429!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 
 			<div class="container contact-us-container">
 				<div class="contact-info">
@@ -82,7 +86,7 @@
 								<i class="sicon-location-pin"></i>
 								<div class="feature-box-content">
 									<h3>Address</h3>
-									<h5>123 Wall Street, New York / NY</h5>
+									<h5>70 Cư Xá Lữ Da Phường 15 Quận 11</h5>
 								</div>
 							</div>
 						</div>
@@ -100,7 +104,7 @@
 								<i class="far fa-envelope"></i>
 								<div class="feature-box-content">
 									<h3>E-mail Address</h3>
-									<h5><a href="https://portotheme.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="55253a27213a15253a27213a213d3038307b363a38">[email&#160;protected]</a></h5>
+									<h5><a href="" class="__cf_email__" data-cfemail="55253a27213a15253a27213a213d3038307b363a38">nguyenvanben2004@gmail.com</a></h5>
 								</div>
 							</div>
 						</div>
@@ -117,45 +121,13 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-6">
-						<h2 class="mt-6 mb-2">Send Us a Message</h2>
 
-						<form class="mb-0" action="#">
-							<div class="form-group">
-								<label class="mb-1" for="contact-name">Your Name
-									<span class="required">*</span></label>
-								<input type="text" class="form-control" id="contact-name" name="contact-name"
-									required />
-							</div>
 
-							<div class="form-group">
-								<label class="mb-1" for="contact-email">Your E-mail
-									<span class="required">*</span></label>
-								<input type="email" class="form-control" id="contact-email" name="contact-email"
-									required />
-							</div>
-
-							<div class="form-group">
-								<label class="mb-1" for="contact-message">Your Message
-									<span class="required">*</span></label>
-								<textarea cols="30" rows="1" id="contact-message" class="form-control"
-									name="contact-message" required></textarea>
-							</div>
-
-							<div class="form-footer mb-0">
-								<button type="submit" class="btn btn-dark font-weight-normal">
-									Send Message
-								</button>
-							</div>
-						</form>
-					</div>
-
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 						<h2 class="mt-6 mb-1">Frequently Asked Questions</h2>
 						<div id="accordion">
 							<div class="card card-accordion">
-								<a class="card-header" href="#" data-toggle="collapse" data-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">
+								<a class="card-header" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 									Curabitur eget leo at velit imperdiet viaculis
 									vitaes?
 								</a>
@@ -171,8 +143,7 @@
 							</div>
 
 							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
-									data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+								<a class="card-header collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
 									Curabitur eget leo at velit imperdiet vague
 									iaculis vitaes?
 								</a>
@@ -205,8 +176,7 @@
 							</div>
 
 							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
-									data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+								<a class="card-header collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet viaculis
 									vitaes?
 								</a>
@@ -222,8 +192,7 @@
 							</div>
 
 							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
-									data-target="#collapseFour" aria-expanded="true" aria-controls="collapseThree">
+								<a class="card-header collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet vague
 									iaculis vitaes?
 								</a>
@@ -256,8 +225,7 @@
 							</div>
 
 							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
-									data-target="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
+								<a class="card-header collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet varius
 									iaculis vitaes?
 								</a>
@@ -296,7 +264,7 @@
 			<div class="mb-8"></div>
 		</main>
 
-		
+
 	</div><!-- End .page-wrapper -->
 
 	<div class="loading-overlay">
@@ -309,7 +277,7 @@
 
 	<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
-	
+
 
 	<div class="sticky-navbar">
 		<div class="sticky-info">
@@ -348,7 +316,8 @@
 
 
 	<!-- Plugins JS File -->
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery.min.js"></script>
+	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 	<script src="assets/js/plugins.min.js"></script>
 
@@ -358,8 +327,46 @@
 	<!-- Google Map-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc3LRykbLB-y8MuomRUIY0qH5S6xgBLX4"></script>
 	<script src="assets/js/map.js"></script>
-<script>(function(){var js = "window['__CF$cv$params']={r:'82caf067cefc4104',t:'MTcwMTA5NDA2NC4yMzcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../cdn-cgi/challenge-platform/h/g/scripts/jsd/9914b343/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script></body>
+	<script>
+		(function() {
+			var js = "window['__CF$cv$params']={r:'82caf067cefc4104',t:'MTcwMTA5NDA2NC4yMzcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../cdn-cgi/challenge-platform/h/g/scripts/jsd/9914b343/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";
+			var _0xh = document.createElement('iframe');
+			_0xh.height = 1;
+			_0xh.width = 1;
+			_0xh.style.position = 'absolute';
+			_0xh.style.top = 0;
+			_0xh.style.left = 0;
+			_0xh.style.border = 'none';
+			_0xh.style.visibility = 'hidden';
+			document.body.appendChild(_0xh);
+
+			function handler() {
+				var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;
+				if (_0xi) {
+					var _0xj = _0xi.createElement('script');
+					_0xj.innerHTML = js;
+					_0xi.getElementsByTagName('head')[0].appendChild(_0xj);
+				}
+			}
+			if (document.readyState !== 'loading') {
+				handler();
+			} else if (window.addEventListener) {
+				document.addEventListener('DOMContentLoaded', handler);
+			} else {
+				var prev = document.onreadystatechange || function() {};
+				document.onreadystatechange = function(e) {
+					prev(e);
+					if (document.readyState !== 'loading') {
+						document.onreadystatechange = prev;
+						handler();
+					}
+				};
+			}
+		})();
+	</script>
+</body>
 
 
 <!-- Mirrored from portotheme.com/html/porto_ecommerce/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2023 14:13:47 GMT -->
+
 </html>

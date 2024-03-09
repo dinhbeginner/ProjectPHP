@@ -288,25 +288,9 @@
 
 
 
-                                        <?php
-                                        // if ($_GET['id_menu'] == 2) {
-                                        ?>
-                                        <!-- <div style="display:flex;">
-                                                <?php
-                                                echo 'SIZE :';
-                                                $sizeValues = array(); // Mảng để lưu trữ các giá trị size
-                                                while ($row = $result->fetch()) {
-                                                    $sizeValue = $row['size_ao'];
-                                                    $sizeValues[] = $sizeValue;
-                                                    echo "<button type='button' class='size-button 'onclick='setSize(\"$sizeValue\", event)' style='width:50px;height:30px;margin-left:15px;font-size:16px;border-radius:8px;color:white;background-color:#8b8b8b;'>$sizeValue</button>";
-                                                }
-
-                                                ?>
-                                                <input type="hidden" name="size" id="selectedSize" value="">
-                                            </div>
-                                        <?php
-                                        // }
-                                        ?>
+                                     
+                                       
+                                        
                                         <script>
                                             function setSize(size, event) {
                                                 // Set the selected size in the hidden input field

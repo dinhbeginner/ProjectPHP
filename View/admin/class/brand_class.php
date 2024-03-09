@@ -14,7 +14,7 @@ class Brand
     {
         try {
             // Validate and handle image upload
-            $uploadDir = 'assets/upload/menu/'; // Replace with your actual upload directory
+            $uploadDir = "../../assets/images/demoes/products/"; // Replace with your actual upload directory
             $uploadedFile = $uploadDir . basename($brand_image['name']);
             $fileImag = basename($brand_image['name']);
             $id_danhmuc='2';

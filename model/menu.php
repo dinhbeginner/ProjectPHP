@@ -16,4 +16,11 @@
           $result = $db->getList($query);
           return $result;
       }
-  }
+      function getProductCount($product_id)
+      {
+          $db = new connect();
+          $select = "SELECT * FROM tbl_product WHERE id_menu='$product_id'";
+          $result = $db->getList($select);
+          return $result->rowCount();
+      }
+  }     

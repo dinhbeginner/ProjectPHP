@@ -125,7 +125,7 @@
                         <?php
                         // var_dump($_SESSION);
                         if (isset($_SESSION['tenkh'])) : ?>
-                            <a href="" class="header-icon" title="Wellcom <?php echo $_SESSION['tenkh'] ?>"><i class="icon-user-2">
+                            <a href="index.php?action=dashboard" class="header-icon" title="Wellcom <?php echo $_SESSION['tenkh'] ?>"><i class="icon-user-2">
                                     <h7><?php echo $_SESSION['tenkh'] ?></h7>
                                 </i></a>
 
@@ -134,7 +134,15 @@
                             <a href="index.php?action=login&act=login" class="header-icon" title="Login">
                                 <i class="icon-user-2"></i>
                             </a>
-                        <?php endif; ?>
+                        <?php endif; 
+                        $count=0;
+                          if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
+                        
+                        for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                            $count++;
+                        }
+                    }
+                        ?>
 
 
 
@@ -145,7 +153,7 @@
                         <div class="dropdown cart-dropdown">
                             <a href="index.php?action=cart" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="minicart-icon"></i>
-                                <span class="cart-count badge-circle">3</span>
+                                <span class="cart-count badge-circle"><?php echo  $count?></span>
                             </a>
 
                             <div class="cart-overlay"></div>
@@ -324,11 +332,14 @@
                             <?php
                                 }
                             }
+                            if(isset($_SESSION['makh'])){
                             ?>
 
                             <li class="float-right"><a href="index.php?action=login&act=logout" rel="noopener" class="pl-5" target="_blank">LOGOUT</a></li>
+                            <?php }
+                            else{?>
                             <li class="float-right"><a href="index.php?action=login&act=login" class="pl-5">Log in</a></li>
-
+<?php }?>
                         </ul>
                     </nav>
                 </div>

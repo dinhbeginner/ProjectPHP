@@ -40,6 +40,16 @@
                 // Check if the product insertion was successful and provide feedback
                 if ($insert_product === true) {
                     echo "<script>alert('Product added successfully!');</script>";
+                    if ($insert_product) {
+                        echo '<script type="text/javascript">
+                            $(document).ready(function(){
+                                $("#successModal").modal("show");
+                                setTimeout(function(){
+                                    window.location.href = "http://localhost/webphp/webmang/view/admin/index.php?action=ListProduct"; // Replace "index.php" with the actual URL of your index page
+                                }, 1000); // Redirect after 2 seconds (adjust as needed)
+                            });
+                        </script>';
+                    }
                 } else {
                     echo "<script>alert('Error: $insert_product');</script>";
                 }
@@ -132,4 +142,4 @@
 
 </body>
 
-</html> 
+</html>

@@ -1,102 +1,78 @@
-<?php
-include "header.php";
-include "slider.php";
-include "class/product_class.php";
+<html>
 
-$product = new product;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and sanitize user inputs before passing them to the insert_product method
-    $validatedData = validateAndSanitize($_POST);
-    $insert_product = $product->insert_product($validatedData, $_FILES);
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawAxisTickColors);
 
-    // Check if the product insertion was successful and provide feedback
-    if ($insert_product) {
-        echo "<script>alert('Product added successfully!');</script>";
-    } else {
-        echo "<script>alert('ERROR to add product!');</script>";
+    function drawAxisTickColors() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+      data.addColumn('number', 'Energy Level');
+
+      data.addRows([
+        [{ v: [8, 0, 0], f: '8 am' }, 1, .25],
+        [{ v: [9, 0, 0], f: '9 am' }, 2, .5],
+        [{ v: [10, 0, 0], f: '10 am' }, 3, 1],
+        [{ v: [11, 0, 0], f: '11 am' }, 4, 2.25],
+        [{ v: [12, 0, 0], f: '12 pm' }, 5, 2.25],
+        [{ v: [13, 0, 0], f: '1 pm' }, 6, 3],
+        [{ v: [14, 0, 0], f: '2 pm' }, 7, 4],
+        [{ v: [15, 0, 0], f: '3 pm' }, 8, 5.25],
+        [{ v: [16, 0, 0], f: '4 pm' }, 9, 7.5],
+        [{ v: [17, 0, 0], f: '5 pm' }, 10, 10],
+      ]);
+
+      var options = {
+        title: 'Motivation and Energy Level Throughout the Day',
+        focusTarget: 'category',
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          },
+          textStyle: {
+            fontSize: 14,
+            color: '#053061',
+            bold: true,
+            italic: false
+          },
+          titleTextStyle: {
+            fontSize: 18,
+            color: '#053061',
+            bold: true,
+            italic: false
+          }
+        },
+        vAxis: {
+          title: 'Rating (scale of 1-10)',
+          textStyle: {
+            fontSize: 18,
+            color: '#67001f',
+            bold: false,
+            italic: false
+          },
+          titleTextStyle: {
+            fontSize: 18,
+            color: '#67001f',
+            bold: true,
+            italic: false
+          }
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
     }
-}
+  </script>
+</head>
 
-function validateAndSanitize($data) {
-    // Implement your validation and sanitization logic here
-    // For example, you can use filter_input or custom validation functions
-    // Return the validated and sanitized data
-    return $data;
-}
-?>
+<body>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
 
-<div class="admin-content-right">
-    <div class="admin-content-right-product_add">
-        <h1 style="padding-bottom: 20px;">Thêm Sản Phẩm</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-        <label for="">Nhập tên Sản Phẩm <span style="color:red">*</span></label>
-            <input name="product_name" required type="text">
-            <label for="">Chọn Danh Mục<span style="color:red">*</span></label>
-
-            <select name="cartegory_id" id="cartegory_id">
-                <option value="#">--Chọn--</option>
-                <?php
-                $show_cartegory = $product->show_cartegory();
-                if ($show_cartegory) {
-                    while ($result = $show_cartegory->fetch_assoc()) {
-                ?>
-                        <option value="<?php echo $result['cartegory_id'] ?>"><?php echo $result['cartegory_name'] ?></option>
-                <?php
-                    }
-                }
-                ?>
-            </select><br>
-
-            <label for=""> Chọn Loại Sản Phẩm<span style="color:red">*</span></label>
-            <select name="brand_id" id="brand_id">
-
-                <option value="#">--Chọn--</option>
-
-            </select>
-            <label for=""> Chọn Giá Sản Phẩm<span style="color:red">*</span></label>
-
-            <input name="product_price" required type="text" placeholder="Giá sản phẩm">
-            <label for=""> Chọn Giá khuyến mãi<span style="color:red">*</span></label>
-
-            <input name="product_price_new"  type="text" placeholder="Giá khuyến mãi">
-            <label for="">Mô tả Sản Phẩm<span style="color:red">*</span></label>
-
-            <textarea name="product_desc" id="editor" cols="30" rows="10" placeholder="Mô tả sản phẩm"></textarea>
-            <label for="">Ảnh sản phẩm<span style="color:red">*</span></label>
-
-            <input name="product_img" required type="file">
-            <label for="">Ảnh Mô tả<span style="color:red">*</span></label>
-
-            <input name="product_img_desc[]" required multiple type="file">
-            <button type="submit">Thêm</button>
-        </form>
-    </div>
-</div>
-</section>
-<!-- Thêm liên kết đến thư viện CKEditor từ CDN -->
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-
-<!-- Thay thế phiên bản slim bằng phiên bản đầy đủ -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-
-<script>
-
-
-CKEDITOR.replace("editor");
-
-
-
-
-
-
-    $(document).ready(function() {
-        $('#cartegory_id').change(function() {
-            // alert($(this).val())
-            var x = $(this).val();
-            $.get("productadd_ajax.php", { cartegory_id: x }, function(data) {
-                $("#brand_id").html(data);
-            });
-        });
-    });
-</script>
+</html>

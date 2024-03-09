@@ -19,7 +19,7 @@ switch ($act) {
             $adminPass = $_POST['adminPass'];
           
             // Hash the password securely (consider using bcrypt or Argon2)
-            $hashedPassword = md5($adminPass);
+            $hashedPassword = $adminPass;
           
             // Check user credentials
             $adminLogin = new AdminLogin();

@@ -14,7 +14,7 @@
     .s {
         width: 50%;
         /* Adjusted the width */
-      
+
     }
 
     .grid {
@@ -24,7 +24,7 @@
 
 <body>
     <div class="be-wrapper be-fixed-sidebar">
-        <div  style="width:1383px;margin-left:250px">
+        <div style="width:1383px;margin-left:250px">
             <?php
 
 
@@ -57,7 +57,7 @@
                                 <th>product_img</th>
                                 <th>product_imgs</th>
                                 <th>action</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody>
@@ -79,14 +79,15 @@
                                         <td><?php echo $resultproduct['product_price_new']; ?></td>
                                         <td><?php echo $resultproduct['quantity']; ?></td>
                                         <td><?php echo $resultproduct['describe']; ?></td>
-                                       
-                                        <td><img src="../admin/assets//upload/products/<?php echo $resultproduct['product_img']; ?>" width="50px" alt=""></td>
-                                        <td><img src="../admin/assets/upload/products/<?php echo $resultproduct['product_img2']; ?>" width="50px" alt=""></td>
-                                       
+
+                                        <td><img src="../../assets/images/products/<?php echo $resultproduct['product_img']; ?>" width="50px" alt=""></td>
+                                        <td><img src="../../assets/images/products/<?php echo $resultproduct['product_img2']; ?>" width="50px" alt=""></td>
+
                                         <td>
                                             <div class="row">
-                                            <a href="index.php?action=productedit&cartegory_id=<?php echo $resultproduct['id_menu'] ?>&product_id=<?= $resultproduct['product_id'] ?>">Sửa</a> |
-                                            <a href="#" onclick="confirmDelete(<?php echo $resultproduct['product_id'] ?>)">Xóa</a></div>
+                                                <a href="index.php?action=productedit&cartegory_id=<?php echo $resultproduct['id_menu'] ?>&product_id=<?= $resultproduct['product_id'] ?>" class="btn btn-primary btn-sm">Sửa</a> |
+                                                <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $resultproduct['product_id'] ?>)">Xóa</button>
+                                            </div>
                                         </td>
                                     </tr>
                             <?php
@@ -111,11 +112,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        function confirmDelete(categoryId) {
+        function confirmDelete(productId) {
             var userConfirmed = confirm("Bạn có muốn xóa không?");
             if (userConfirmed) {
-                window.location.href = "view/categorydelete.php?id_danhmuc=" + categoryId;
-                return window.location.href = "http://localhost/webphp/webmang/view/admin/index.php?action=ListDanhmuc"
+                window.location.href = "view/product_delete.php?id_product=" + productId;
+                return window.location.href = "http://localhost/webphp/webmang/view/admin/index.php?action=ListProduct"
             }
         }
     </script>

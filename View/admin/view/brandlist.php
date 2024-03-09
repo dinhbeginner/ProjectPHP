@@ -28,7 +28,7 @@
 <body>
     <div class="container">
         <section class="page-content">
-          
+
             <h1 class="text-center my-4">Danh Sách Danh Mục</h1>
             <section class="grid">
                 <?php
@@ -66,7 +66,7 @@
                                     <td><?php echo $result['id_menu']; ?></td>
                                     <td><?php echo $result['category_name']; ?></td>
                                     <td><?php echo $result['ten_menu']; ?></td>
-                                    <td style="width:200px">  <img src="assets/upload/menu/<?php echo $result['imag_danhmuc_'];  ?>" width="50%"alt=""></td>
+                                    <td style="width:200px"> <img src="../../assets/images/demoes/products/<?php echo $result['imag_danhmuc_'];  ?>" width="50%" alt=""></td>
                                     <td>
                                         <a href="index.php?action=editbrand&brand_id=<?php echo $result['id_menu'] ?>" class="btn btn-primary btn-sm">Sửa</a>
                                         <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $result['id_menu'] ?>)">Xóa</button>

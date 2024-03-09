@@ -15,14 +15,15 @@ if (isset($_POST['submit_email']) == true) {
 
         $mk = str_pad(random_int(1000, 999999), 6, '0', STR_PAD_LEFT);
         $saltF = "G45a#?";
-            $saltL = "Td23$%";
-            $passnew = md5($saltF . $mk . $saltL);
+        $saltL = "Td23$%";
+        $passnew = md5($saltF . $mk . $saltL);
 
 
         $sql = "UPDATE tbl_khachhang SET password=?  WHERE email=?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$passnew, $email]);
-        //  echo "đã cập nhật";
+        // if($sql){
+        //  echo "đã cập nhật";}
         guiemail($email, $mk);
     }
 }
@@ -61,6 +62,7 @@ function guiemail($email, $mk)
         ));
         $mail->send();
         echo 'Đã gửi mail xong';
+        echo '<meta http-equiv="refresh" content="0;url=./index.php?action=login"/>';
     } catch (Exception $e) {
         echo 'Error: ', $mail->ErrorInfo;
     }
@@ -162,7 +164,7 @@ function guiemail($email, $mk)
                                     <div class="form-footer mb-0">
                                         <a href="index.php?action=login">Click here to login</a>
 
-                                        <button type="submit" name="submit_email"class="btn btn-md btn-primary form-footer-right font-weight-normal text-transform-none mr-0">
+                                        <button type="submit" name="submit_email" class="btn btn-md btn-primary form-footer-right font-weight-normal text-transform-none mr-0">
                                             Reset Password
                                         </button>
                                     </div>

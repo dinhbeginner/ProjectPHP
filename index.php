@@ -45,7 +45,8 @@ session_start();
 
 
     <?php
-    //   $hh=new connect;
+    //   $hh=new connect; 
+    
     include_once "View/header.php"
 
 
@@ -88,7 +89,6 @@ session_start();
         case 'checkout':
             include_once "controller/checkout.php";
             break;
-      
     }
     include_once "controller/$ctr.php";
     ?>
@@ -96,7 +96,8 @@ session_start();
 
 
     <?php
-    include_once "View/fooder.php"
+    include_once "View/fooder.php";
+
     ?>
 
     <!-- Plugins JS File -->

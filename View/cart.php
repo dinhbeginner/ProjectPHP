@@ -92,13 +92,13 @@ if (empty($_SESSION['cart'])) {
             <div class="container">
                 <ul class="checkout-progress-bar d-flex justify-content-center flex-wrap">
                     <li class="active">
-                        <a href="cart.html">Shopping Cart</a>
+                        <a href="">Shopping Cart</a>
                     </li>
                     <li>
-                        <a href="checkout.html">Checkout</a>
+                        <a href="">Checkout</a>
                     </li>
                     <li class="disabled">
-                        <a href="cart.html">Order Complete</a>
+                        <a href="">Order Complete</a>
                     </li>
                 </ul>
 
@@ -126,7 +126,7 @@ if (empty($_SESSION['cart'])) {
                                             for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
                                                 $link = "index.php?action=cart&act=cart_action&delete=" . $i;
                                                 $totall = floatval(str_replace('.', '', $_SESSION['cart'][$i][4])) * $_SESSION['cart'][$i][5];
-                                                var_dump($totall);
+                                                // var_dump($totall);
                                                 $resultFormatted = number_format($totall, 0, '.', ',');
                                         ?>
                                                 <tr class="product-row" id="productRow_<?php echo $i; ?>">
@@ -159,7 +159,9 @@ if (empty($_SESSION['cart'])) {
                                                             <button type="button" class="quantity-btns" onclick="updateQuantity(<?php echo $i ?>, 1)">+</button>
                                                         </div>
                                                     </td>
-                                                    <td class="text-right"><span class="subtotal-price" id="subtotal_<?php echo $i ?>"><?php echo $resultFormatted ?></span></td>
+                                                    <td class="text-right"><span class="subtotal-price" id="subtotal_<?php echo $i ?>"><?php echo $resultFormatted ?></span>
+                                                <input type="hidden" name="total" value="<?php echo $resultFormatted ?>">
+                                                </td>
                                                 </tr>
                                         <?php
                                             }
@@ -298,7 +300,7 @@ if (empty($_SESSION['cart'])) {
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="clearfix">
-                                                
+
 
                                                 <div class="float-right">
                                                     <a href="index.php?action=cart&act=update"><input type="submit" name="update" class="btn btn-shop btn-update-cart" value="Update Cart"></a>
@@ -327,7 +329,7 @@ if (empty($_SESSION['cart'])) {
                                 <tfoot>
                                     <tr>
                                         <td>Total</td>
-                                       
+
                                         <td><?php
                                             $sum = 0;
                                             if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {

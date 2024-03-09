@@ -6311,7 +6311,7 @@ figure .porto-loading-icon {
 
 .ratings-container .product-ratings:before {
   content: "";
-  color: #e4ac1e
+  color: rgba(247, 17, 17, 0.16);
 }
 
 .ratings-container .product-ratings:hover .tooltiptext {
@@ -7166,7 +7166,7 @@ figure .porto-loading-icon {
 }
 
 .overlay .product-details .ratings-container .product-ratings:before {
-  color: rgba(243, 177, 9, 0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .overlay .product-details .price-box {

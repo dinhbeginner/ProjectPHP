@@ -8,7 +8,7 @@
                             <li class="divider">Menu</li>
                             <li class="active"><a href="index.php?action=index"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a>
                             </li>
-                            <li class="parent"><a href="#"><i class="icon mdi mdi-face"></i><span>Category</span></a>
+                            <li class="parent"><a href="#"><i class="icon mdi mdi-inbox"></i><span>Category</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="index.php?action=adddanhmuc">Thêm Danh Mục</a>
                                     </li>
@@ -23,7 +23,7 @@
                                     </li>
                                     <li><a href="index.php?action=brandlist">Menu List</a>
                                     </li>
-                                   
+
                                 </ul>
                             </li>
                             <li class="parent"><a href="#"><i class="icon mdi mdi-dot-circle"></i><span>Product</span></a>
@@ -32,10 +32,10 @@
                                     </li>
                                     <li><a href="index.php?action=productadd">Add Product</a>
                                     </li>
-                                   
+
                                 </ul>
                             </li>
-                            <li class="parent"><a href="#"><i class="icon mdi mdi-border-all"></i><span>Tables</span></a>
+                            <!-- <li class="parent"><a href="#"><i class="icon mdi mdi-border-all"></i><span>Tables</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="tables-general.html">General</a>
                                     </li>
@@ -44,8 +44,8 @@
                                     <li><a href="tables-filters.html"><span class="badge badge-primary float-right">New</span>Table Filters</a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="parent"><a href="#"><i class="icon mdi mdi-layers"></i><span>Pages</span></a>
+                            </li> -->
+                            <!-- <li class="parent"><a href="#"><i class="icon mdi mdi-layers"></i><span>Pages</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="pages-blank.html">Blank Page</a>
                                     </li>
@@ -86,52 +86,24 @@
                                     <li><a href="pages-ajax-loader.html"><span class="badge badge-primary float-right">New</span>AJAX Loader</a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="divider">Features</li>
-                            <li class="parent"><a href="#"><i class="icon mdi mdi-inbox"></i><span>Email</span></a>
+                            </li> -->
+                            <li class="divider">Danh Sách</li>
+                            <li class="parent"><a href="#"><i class="icon mdi mdi-face"></i><span>Khách hàng</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="email-inbox.html">Inbox</a>
+                                    <li><a href="index.php?action=listkhachhang">List khách hàng</a>
                                     </li>
-                                    <li><a href="email-read.html">Email Detail</a>
-                                    </li>
-                                    <li><a href="email-compose.html">Email Compose</a>
-                                    </li>
+
                                 </ul>
                             </li>
-                            <li class="parent"><a href="#"><i class="icon mdi mdi-view-web"></i><span>Layouts</span></a>
+                            <li class="parent"><a href="#"><i class="icon mdi mdi-view-web"></i><span>Đơn Hàng</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="layouts-primary-header.html">Primary Header</a>
+                                    <li><a href="index.php?action=donhang&act=AllProduct">Tất Đơn Hàng</a>
                                     </li>
-                                    <li><a href="layouts-success-header.html">Success Header</a>
+                                    <li><a href="index.php?action=donhang&act=notConfirmProduct">Đơn Hàng Chưa Xác Nhận</a>
                                     </li>
-                                    <li><a href="layouts-warning-header.html">Warning Header</a>
+                                    <li><a href="index.php?action=donhang&act=ComfirmProduct">Đơn Hàng Đã Xác Nhận</a>
                                     </li>
-                                    <li><a href="layouts-danger-header.html">Danger Header</a>
-                                    </li>
-                                    <li><a href="layouts-search-input.html">Search Input</a>
-                                    </li>
-                                    <li><a href="layouts-offcanvas-menu.html">Off Canvas Menu</a>
-                                    </li>
-                                    <li><a href="layouts-top-menu.html"><span class="badge badge-primary float-right">New</span>Top Menu</a>
-                                    </li>
-                                    <li><a href="layouts-nosidebar-left.html">Without Left Sidebar</a>
-                                    </li>
-                                    <li><a href="layouts-nosidebar-right.html">Without Right Sidebar</a>
-                                    </li>
-                                    <li><a href="layouts-nosidebars.html">Without Both Sidebars</a>
-                                    </li>
-                                    <li><a href="layouts-fixed-sidebar.html">Fixed Left Sidebar</a>
-                                    </li>
-                                    <li><a href="layouts-boxed-layout.html"><span class="badge badge-primary float-right">New</span>Boxed Layout</a>
-                                    </li>
-                                    <li><a href="pages-blank-aside.html">Page Aside</a>
-                                    </li>
-                                    <li><a href="layouts-collapsible-sidebar.html">Collapsible Sidebar</a>
-                                    </li>
-                                    <li><a href="layouts-sub-navigation.html"><span class="badge badge-primary float-right">New</span>Sub Navigation</a>
-                                    </li>
-                                    <li><a href="layouts-mega-menu.html"><span class="badge badge-primary float-right">New</span>Mega Menu</a>
-                                    </li>
+
                                 </ul>
                             </li>
                             <li class="parent"><a href="#"><i class="icon mdi mdi-pin"></i><span>Maps</span></a>
@@ -188,6 +160,6 @@
             </div>
         </div>
     </div>
-    
+
 
 </div>

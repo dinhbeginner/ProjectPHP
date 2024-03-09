@@ -119,7 +119,7 @@ if (empty($_SESSION['wishlist'])) {
                                         <td>
                                             <figure class="product-image-container">
                                                 <a href="index.php?action=detailproduct&id_detail=<?= $_SESSION['wishlist'][$i][0]; ?>&id_menu=<?= $_SESSION['wishlist'][$i][4];  ?>" class="product-image">
-                                                    <img src="assets/images/products//<?php echo $_SESSION['wishlist'][$i][1] ?>" alt="product">
+                                                    <img src="assets/images/products/<?php echo $_SESSION['wishlist'][$i][1] ?>" alt="product">
                                                 </a>
 
                                                 <a href="<?php echo $link ?>" class="btn-remove icon-cancel" title="Remove Product"></a>

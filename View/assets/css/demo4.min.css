@@ -7949,11 +7949,11 @@ figure .porto-loading-icon {
 }
 
 .product-overlay .product-details .ratings-container .product-ratings:before {
-    color: rgba(234, 255, 0, 0.6)
+    color: rgba(255, 255, 255, 0.6)
 }
 
 .product-overlay .product-details .ratings-container .ratings:before {
-    color: #f4ed0b
+    color: #fff
 }
 
 .product-overlay .product-details .price-box {
@@ -8069,7 +8069,7 @@ figure .porto-loading-icon {
 }
 
 .overlay-dark .product-details .ratings-container .product-ratings:before {
-    color: rgba(230, 32, 32, 0.6)
+    color: rgba(255, 255, 255, 0.6)
 }
 
 .overlay-dark .product-details .price-box {
